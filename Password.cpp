@@ -1,5 +1,6 @@
 #include "Password.h"
 #include <string>
+#include <map>
 
 using std::string;
 
@@ -25,4 +26,23 @@ int Password::count_leading_characters(string phrase){
 */
 bool Password::has_mixed_case(string pass){
   return false;
+}
+
+
+unsigned int Password::unique_characters(string pass){
+  std::map<char, int> characters;
+
+  for (int i = 0; i < pass.size(); i++){
+    char charToInsert = pass[0];
+    auto it = characters.find(charToInsert);
+    
+    if (it != characters.end()){
+        return 0;
+    } else {
+      characters.insert({charToInsert, 1});
+
+    }
+
+  }
+  return 1;
 }
